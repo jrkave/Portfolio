@@ -8,6 +8,13 @@ const config = {
     parent: 'game-container',
     width: 640,
     height: 360,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 0 },
+            debug: false
+        },
+    },
     backgroundColor: '#000000',
     pixelArt: true,
     scene: [

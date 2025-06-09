@@ -48,10 +48,12 @@ export class PreloadScene extends Phaser.Scene {
         this.load.image('hr_scroll', 'assets/images/library/hr_scroll.png');
 
         this.load.image('knight_dialog', 'assets/images/shared/knight_dialog.png');
+        this.load.image('player_dialog', 'assets/images/shared/player_dialog.png');
         this.load.image('sunlight_regular', 'assets/images/shared/sunlight_regular.png');
 
-        this.load.spritesheet('knight', 'assets/spritesheets/knight1.png', {frameWidth: 128, frameHeight: 96});
+        this.load.spritesheet('knight', 'assets/spritesheets/knight.png', {frameWidth: 128, frameHeight: 96});
         this.load.spritesheet('candle', 'assets/spritesheets/candle.png', {frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet('player', 'assets/spritesheets/player.png', { frameWidth: 96, frameHeight: 96});
     }
 
     create() {
@@ -59,8 +61,15 @@ export class PreloadScene extends Phaser.Scene {
        // Create animations
 
         this.anims.create({ 
-            key: 'knight_walk',
+            key: 'patrol',
             frames: this.anims.generateFrameNumbers('knight', { start: 0, end: 7}),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'walk', 
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 7}),
             frameRate: 10,
             repeat: -1
         });
