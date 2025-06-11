@@ -1,5 +1,6 @@
 import { PreloadScene } from './scenes/PreloadScene.js';
 import { EntranceScene } from './scenes/EntranceScene.js';
+import { AcademicsScene } from './scenes/AcademicsScene.js';
 
 const config = {
     type: Phaser.AUTO,
@@ -18,7 +19,7 @@ const config = {
     backgroundColor: '#000000',
     pixelArt: true,
     scene: [
-        PreloadScene, EntranceScene
+        PreloadScene, EntranceScene, AcademicsScene
     ],
     scale: {
         mode: Phaser.Scale.FIT,

@@ -10,7 +10,6 @@ export class EntranceScene extends Phaser.Scene {
     }
 
     create() {
-        
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Create game objects
@@ -18,9 +17,8 @@ export class EntranceScene extends Phaser.Scene {
         this.add.sprite(190, 150, 'candle').play('flicker');
         this.add.sprite(450, 150, 'candle').play('flicker');
         
-        const doorZone = this.add.rectangle(244, 72, 150, 200);
-        doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
-        doorZone.on('pointerdown', () => console.log('clicked'));
+        this.doorZone = this.add.rectangle(244, 72, 150, 200);
+        this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
 
         this.knight = new Knight(this, 190, 224);
         this.knight.patrol(450, 190, 6000, 3000);
@@ -33,26 +31,32 @@ export class EntranceScene extends Phaser.Scene {
         this.add.image(4, 4, 'knight_dialog').setOrigin(0, 0).setVisible(false);
 
         const messages = [
-            'This castle has many mysteries inside, yes indeed...',
-            'Well? Are you going to go inside?',
-            'Just click the door to begin.'
+            "This castle has many mysteries inside, yes indeed...",
+            "Well? Are ye goin' to go inside?",
+            "If yer havin' trouble gettin' inside, click the door, and I'll let ye in."
         ];
-
         this.dialog = new Dialog(this, messages);
+        
         this.menu = new Menu(this);
 
         // Set up event listeners
-        this.dialog.on('dialog_closed', () => {
-            this.dialog.hide();
-        });
+        this.dialog.on('dialog_closed', () => this.dialog.hide());
+        
         this.knight.on('knight_clicked', () => {
             if (!this.dialog.visible) {
                 this.dialog.show();
             }
         });
         
+        this.doorZone.on('pointerdown', () => this.menu.show());
+        this.menu.on('no_clicked', () => this.menu.hide());
+        this.menu.on('yes_clicked', () => {
+            this.scene.start("AcademicsScene");
+        });
+        
         // Fade in
         this.cameras.main.fadeIn(1500, 0, 0, 0);
+
     }
 
     update() {

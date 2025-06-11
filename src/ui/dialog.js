@@ -1,5 +1,5 @@
 export default class Dialog {
-    constructor(scene, messages=['Hello!']) {
+    constructor(scene, messages=["Why 'ello there!"]) {
         if (messages.length < 1) {
             throw new Error('Must have at least one message.');
         }
@@ -13,8 +13,10 @@ export default class Dialog {
         // Text setup
         this.messages = messages;
         this.messageNum = 0;
-        this.text = scene.add.bitmapText(100, 26, 'dogica', messages[this.messageNum], 8);
-        this.text.setMaxWidth(180).setLineSpacing(40).setCharacterTint(0, -1, true, 16777215);
+        this.text = scene.add.bitmapText(100, 26, 'dogica', messages[this.messageNum], 8)
+            .setMaxWidth(180)
+            .setLineSpacing(40)
+            .setCharacterTint(0, -1, true, 16777215);
 
         // Container setup
         this.container = scene.add.container();
@@ -38,7 +40,8 @@ export default class Dialog {
     next() {
         if (this.messageNum < this.messages.length - 1) {
             this.messageNum += 1;
-            this.text.setText(this.messages[this.messageNum]);
+            this.text.setText(this.messages[this.messageNum])
+            .setCharacterTint(0, -1, true, 16777215);
         }
     }
 

@@ -77,9 +77,9 @@ export class PreloadScene extends Phaser.Scene {
       "/assets/fonts/dogica.xml"
     );
     this.load.bitmapFont(
-      "ancient",
-      "/assets/fonts/ancient_medium.png",
-      "/assets/fonts/ancient_medium.xml"
+      "righteous",
+      "/assets/fonts/righteous.png",
+      "/assets/fonts/righteous.xml"
     );
   }
 

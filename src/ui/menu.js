@@ -12,19 +12,19 @@ export default class Dialog {
       .setInteractive({ useHandCursor: true });
 
     // Text setup
-    const menu_text = scene.add.bitmapText(230, 70, "ancient", "Menu", 40);
-    const text = scene.add.bitmapText(
-      240,
-      110,
-      "dogica",
-      "Would you like to move on?",
-      8
-    );
+    const knight_text = scene.add.bitmapText(284, 82, "dogica", "Oi! Ready to see the rest of the castle, are ye?", 8)
+      .setMaxWidth(140)
+      .setLineSpacing(30);
+      
+    const yes_text = scene.add.bitmapText(261, 144, "righteous", "AYE", 8)
+      .setCharacterTint(0, -1, true, 16777215);
+    const no_text = scene.add.bitmapText(342, 144, "righteous", "NAY", 8)
+      .setCharacterTint(0, -1, true, 16777215);
 
     // Container setup
     this.container = scene.add.container();
-    this.container.add([menu, text, menu_text, yes_button, no_button]);
-    this.container.setVisible(true);
+    this.container.add([menu, knight_text, yes_button, yes_text, no_button, no_text]);
+    this.container.setVisible(false);
 
     // Emitter setup
     this.emitter = new Phaser.Events.EventEmitter();
