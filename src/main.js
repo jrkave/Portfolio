@@ -1,25 +1,27 @@
-import { PreloadScene } from './scenes/PreloadScene.js';
-import { EntranceScene } from './scenes/EntranceScene.js';
-import { AcademicsScene } from './scenes/AcademicsScene.js';
+import { Boot } from "./scenes/Boot.js";
+import { Entrance } from "./scenes/Entrance.js";
+import { Academics } from "./scenes/Academics.js";
+import { Armory } from "./scenes/Armory.js";
+import { Library } from "./scenes/Library.js";
 
 const config = {
     type: Phaser.AUTO,
-    title: 'Portfolio',
-    description: '',
-    parent: 'game-container',
+    title: "Portfolio",
+    description: "",
+    parent: "game-container",
     width: 640,
     height: 360,
     physics: {
-        default: 'arcade',
+        default: "arcade",
         arcade: {
             gravity: { y: 0 },
             debug: false
         },
     },
-    backgroundColor: '#000000',
+    backgroundColor: "#000000",
     pixelArt: true,
     scene: [
-        PreloadScene, EntranceScene, AcademicsScene
+        Boot, Entrance, Academics, Armory, Library
     ],
     scale: {
         mode: Phaser.Scale.FIT,

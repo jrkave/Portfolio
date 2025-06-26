@@ -1,5 +1,5 @@
 export default class Knight extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, messages) {
         super(scene, x, y, 'knight');
         
         this.scene = scene;
@@ -7,6 +7,11 @@ export default class Knight extends Phaser.GameObjects.Sprite {
         this.setFrame(1).setInteractive({useHandCursor: true});
 
         this.on('pointerdown', () => this.emit('knight_clicked'));
+        this.messages = messages;
+    }
+
+    getMessages() {
+        return this.messages;
     }
     
     update() {
