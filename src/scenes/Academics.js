@@ -12,7 +12,6 @@ export class Academics extends Phaser.Scene {
     }
 
     create() {
-        
 
         // Create game objects
         this.add.image(0, 0, "academics_bg").setOrigin(0, 0);
@@ -24,6 +23,9 @@ export class Academics extends Phaser.Scene {
         const um_plaque = new InteractiveObject(this, 402, 186, "um_plaque").applyShine();
         const gr_scroll = new InteractiveObject(this, 236, 194, "grcc_scroll").applyShine();
         this.add.image(238, 200, "shelf");
+
+        this.doorZone = this.add.rectangle(28, 140, 88, 190);
+        this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
     
         this.knight = new Knight(this, 40, 292, ["Welcome to th' Academics Room! Go ahead, look around!", "You can touch anythin' that's shinin' about. Otherwise, keep yer hands off!"]).setFlipX(true);
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -50,6 +52,11 @@ export class Academics extends Phaser.Scene {
                 this.dialog.show();
             }
         })
+
+        this.doorZone.on("pointerdown", () => this.menu.show());
+        this.menu.on("yes_clicked", () => {
+            this.scene.start("Armory");
+        });
 
         // Fade in
         this.cameras.main.fadeIn(1500, 0, 0, 0);

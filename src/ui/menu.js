@@ -26,10 +26,11 @@ export default class Dialog {
     this.container.add([menu, knight_text, yes_button, yes_text, no_button, no_text]);
     this.container.setVisible(false);
 
-    // Emitter setup
+    // Event handlers and emitter setup
     this.emitter = new Phaser.Events.EventEmitter();
+    no_button.on("pointerdown", () => this.hide());
     yes_button.on("pointerdown", () => this.emitter.emit("yes_clicked"));
-    no_button.on("pointerdown", () => this.emitter.emit("no_clicked"));
+
   }
 
   show() {

@@ -44,7 +44,6 @@ export class Entrance extends Phaser.Scene {
         });
         
         this.doorZone.on("pointerdown", () => this.menu.show());
-        this.menu.on("no_clicked", () => this.menu.hide());
         this.menu.on("yes_clicked", () => {
             this.scene.start("Academics");
         });
