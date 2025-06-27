@@ -1,6 +1,6 @@
 import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
-import Dialog from "../ui/dialog.js";
+import { MultiMessageDialog } from "../ui/dialogs.js";
 import Menu from "../ui/menu.js";
 import InteractiveObject from "../objects/interactiveObject.js";
 import Popup from "../popups/Popup.js";
@@ -19,9 +19,9 @@ export class Academics extends Phaser.Scene {
         this.add.sprite(319, 230, "candle").play("flicker");
         this.add.sprite(485, 230, "candle").play("flicker");
 
-        const gv_plaque = new InteractiveObject(this, 568, 186, "gv_plaque").applyShine();
-        const um_plaque = new InteractiveObject(this, 402, 186, "um_plaque").applyShine();
-        const gr_scroll = new InteractiveObject(this, 236, 194, "grcc_scroll").applyShine();
+        const gvPlaque = new InteractiveObject(this, 568, 186, "gv_plaque").applyShine();
+        const umPlaque = new InteractiveObject(this, 402, 186, "um_plaque").applyShine();
+        const grScroll = new InteractiveObject(this, 236, 194, "grcc_scroll").applyShine();
         this.add.image(238, 200, "shelf");
 
         this.doorZone = this.add.rectangle(28, 140, 88, 190);
@@ -32,19 +32,20 @@ export class Academics extends Phaser.Scene {
         this.player = new Player(this, 160, 298, this.cursors);
         const platform = this.physics.add.staticBody(0, 348, 640, 20);
         this.physics.add.collider(this.player, platform);
+        this.add.image(0, 0, "sunlight_regular").setOrigin(0);
 
-        this.dialog = new Dialog(this, this.knight.getMessages());
+        this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
         this.menu = new Menu(this);
 
         // Set up popups 
-        const um_popup = new Popup(this, UMConfig);
-        um_plaque.on("pointerdown", () => um_popup.show());
+        const umPopup = new Popup(this, UMConfig);
+        umPlaque.on("pointerdown", () => umPopup.show());
 
-        const gv_popup = new Popup(this, GVConfig);
-        gv_plaque.on("pointerdown", () => gv_popup.show());
+        const gvPopup = new Popup(this, GVConfig);
+        gvPlaque.on("pointerdown", () => gvPopup.show());
 
-        const grcc_popup = new Popup(this, GRConfig);
-        gr_scroll.on("pointerdown", () => grcc_popup.show());
+        const grccPopup = new Popup(this, GRConfig);
+        grScroll.on("pointerdown", () => grccPopup.show());
 
         // Set up event listeners 
         this.knight.on("knight_clicked", () => {
@@ -54,6 +55,7 @@ export class Academics extends Phaser.Scene {
         })
 
         this.doorZone.on("pointerdown", () => this.menu.show());
+
         this.menu.on("yes_clicked", () => {
             this.scene.start("Armory");
         });

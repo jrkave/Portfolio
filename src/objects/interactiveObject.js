@@ -5,7 +5,10 @@ export default class InteractiveObject extends Phaser.GameObjects.Image {
         this.scene = scene;
         this.scene.add.existing(this);
         
-        this.setInteractive({useHandCursor: true});
+        this.setInteractive({
+            pixelPerfect: true,
+            useHandCursor: true
+        });
     }
 
     applyShine() {
@@ -17,5 +20,16 @@ export default class InteractiveObject extends Phaser.GameObjects.Image {
             repeat: -1
         });
         return this;
+    }
+
+    setMessage(message) {
+        this.message = message;
+        return this;
+    }
+
+    getMessage() {
+        if (this.message) {
+            return "This object doesn't have a message.";
+        }
     }
 }

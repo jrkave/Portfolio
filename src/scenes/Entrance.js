@@ -1,6 +1,6 @@
 import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
-import Dialog from "../ui/dialog.js";
+import { MultiMessageDialog } from "../ui/dialogs.js";
 import Menu from "../ui/menu.js";
 
 export class Entrance extends Phaser.Scene {
@@ -34,7 +34,7 @@ export class Entrance extends Phaser.Scene {
         this.add.image(0, 0, "sunlight_entrance").setOrigin(0, 0);
         this.add.image(4, 4, "knight_dialog").setOrigin(0, 0).setVisible(false);
 
-        this.dialog = new Dialog(this, this.knight.getMessages());
+        this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
         this.menu = new Menu(this);
 
         this.knight.on("knight_clicked", () => {

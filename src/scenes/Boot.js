@@ -31,19 +31,19 @@ export class Boot extends Phaser.Scene {
     this.load.image("umich_logo", "assets/images/academics/umich.png");
     this.load.image("grcc_logo", "assets/images/academics/grcc.png");
 
-    this.load.image("armory_bg", "assets/images/armory/armory_bg.png");
-    this.load.image("big_shelf", "assets/images/armory/big_shelf.png");
-    this.load.image("chest", "assets/images/armory/chest.png");
-    this.load.image("lectern", "assets/images/armory/lectern.png");
-    this.load.image("weapons_rack", "assets/images/armory/weapons_rack.png");
-    this.load.image("weapon_1", "assets/images/armory/python_weapon.png");
-    this.load.image("weapon_2", "assets/images/armory/sql_weapon.png");
-    this.load.image("weapon_3", "assets/images/armory/java_sword.png");
-    this.load.image("weapon_4", "assets/images/armory/web_sword.png");
-    this.load.image("weapon_5", "assets/images/armory/cpp_mace.png");
-    this.load.image("helmet_1", "assets/images/armory/helmet_1.png");
-    this.load.image("helmet_2", "assets/images/armory/helmet_2.png");
-    this.load.image("helmet_3", "assets/images/armory/helmet_3.png");
+    this.load.image("armory_bg", "assets/images/armory/armory_v3.png");
+    this.load.image("big_shelf", "assets/images/armory/big_shelf_v1.png");
+    this.load.image("chest", "assets/images/armory/chest_v1.png");
+    this.load.image("lectern", "assets/images/armory/lectern_v1.png");
+    this.load.image("weapons_rack", "assets/images/armory/weapons_rack_v2.png");
+    this.load.image("python_weapon_1", "assets/images/armory/python_weapon_v1.png");
+    this.load.image("sql_weapon_2", "assets/images/armory/sql_weapon_v1.png");
+    this.load.image("java_weapon_3", "assets/images/armory/java_sword_v2.png");
+    this.load.image("web_weapon_4", "assets/images/armory/web_sword_v1.png");
+    this.load.image("cpp_weapon_5", "assets/images/armory/cpp_mace_v1.png");
+    this.load.image("postman_helm", "assets/images/armory/postman_helmet.png");
+    this.load.image("git_helm", "assets/images/armory/git_helmet.png");
+    this.load.image("selenium_helm", "assets/images/armory/selenium_helmet.png");
 
     this.load.image("library_bg", "assets/images/library/library_bg.png");
     this.load.image("book_1", "assets/images/library/blue_book.png");
@@ -58,6 +58,7 @@ export class Boot extends Phaser.Scene {
     this.load.image("menu", "assets/images/shared/knight_menu.png");
     this.load.image("scroll_popup", "assets/images/shared/scroll_popup.png");
     this.load.image("plaque_popup", "assets/images/shared/plaque_popup_long.png");
+    this.load.image("book_popup", "assets/images/shared/book_popup.png");
     this.load.image(
       "sunlight_regular",
       "assets/images/shared/sunlight_regular.png"
