@@ -26,22 +26,22 @@ export class Armory extends Phaser.Scene {
             .setMessage("Ah, yes, the Git helm!");
         const seleniumHelm = new InteractiveObject(this, 302, 156, "selenium_helm")
             .applyShine()
-            .setMessage("That's the Selenium helm. Still relatively new, only been tested a few times!");
+            .setMessage("Ah yes, the Selenium helm!");
         this.add.image(272, 170, "big_shelf");
 
         const rack = new InteractiveObject(this, 320, 305, "weapons_rack")
             .applyShine()
-            .setMessage("Aha! The weapons rack! Click any of 'em and I'll tell ye more.");
+            .setMessage("Ah, you're interested in the weapons rack! Click any of the weapons and I'll tell ye more.");
         const pyWeapon  = new InteractiveObject(this, 279, 290, "python_weapon_1")
-            .setMessage("Yes, Python!");
+            .setMessage("Python!");
         const sqlWeapon = new InteractiveObject(this, 306, 306, "sql_weapon_2")
-            .setMessage("SQL! Mhm!");
+            .setMessage("SQL!");
         const javaWeapon = new InteractiveObject(this, 334, 304, "java_weapon_3")
-            .setMessage("Oh! Java!");
+            .setMessage("Java!");
         const webWeapon = new InteractiveObject(this, 352, 311, "web_weapon_4")
-            .setMessage("Excellent, the Web Sword!");
+            .setMessage("The Web Sword!");
         const cppWeapon  = new InteractiveObject(this, 368, 292, "cpp_weapon_5")
-            .setMessage("Oh my, C++!");
+            .setMessage("C++!");
 
         const lectern = new InteractiveObject(this, 556, 315, "lectern").applyShine();
         const chest = new InteractiveObject(this, 186, 321, "chest").applyShine();

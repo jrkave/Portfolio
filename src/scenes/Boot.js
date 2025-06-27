@@ -22,11 +22,11 @@ export class Boot extends Phaser.Scene {
       "assets/images/entrance/sunlight_entrance.png"
     );
 
-    this.load.image("academics_bg", "assets/images/academics/academics_bg.png");
+    this.load.image("academics_bg", "assets/images/academics/academics_v1.png");
     this.load.image("grcc_scroll", "assets/images/academics/grcc_scroll.png");
     this.load.image("gv_plaque", "assets/images/academics/gv_plaque.png");
     this.load.image("um_plaque", "assets/images/academics/um_plaque.png");
-    this.load.image("shelf", "assets/images/academics/shelf.png");
+    this.load.image("shelf", "assets/images/academics/shelf_v1.png");
     this.load.image("gvsu_logo", "assets/images/academics/gvsu.png");
     this.load.image("umich_logo", "assets/images/academics/umich.png");
     this.load.image("grcc_logo", "assets/images/academics/grcc.png");
@@ -45,10 +45,11 @@ export class Boot extends Phaser.Scene {
     this.load.image("git_helm", "assets/images/armory/git_helmet.png");
     this.load.image("selenium_helm", "assets/images/armory/selenium_helmet.png");
 
-    this.load.image("library_bg", "assets/images/library/library_bg.png");
-    this.load.image("book_1", "assets/images/library/blue_book.png");
-    this.load.image("book_2", "assets/images/library/green_book.png");
+    this.load.image("library_bg", "assets/images/library/library_v1.png");
+    this.load.image("blue_book", "assets/images/library/blue_book_v1.png");
+    this.load.image("green_book", "assets/images/library/green_book_v1.png");
     this.load.image("hr_scroll", "assets/images/library/hr_scroll.png");
+    this.load.image("book_shelf", "assets/images/library/library_shelf.png");
 
     this.load.image("knight_dialog", "assets/images/shared/knight_dialog.png");
     this.load.image("player_dialog", "assets/images/shared/player_dialog.png");
