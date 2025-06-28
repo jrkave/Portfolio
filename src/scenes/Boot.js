@@ -49,7 +49,12 @@ export class Boot extends Phaser.Scene {
     this.load.image("blue_book", "assets/images/library/blue_book_v1.png");
     this.load.image("green_book", "assets/images/library/green_book_v1.png");
     this.load.image("hr_scroll", "assets/images/library/hr_scroll.png");
+    this.load.image("blue_book_popup", "assets/images/library/blue_book_popup.png");
+    this.load.image("green_book_popup", "assets/images/library/green_book_popup.png");
     this.load.image("book_shelf", "assets/images/library/library_shelf.png");
+    this.load.image("physie_tag", "assets/images/library/physie_tag.png");
+    this.load.image("rickipedia_tag", "assets/images/library/rickipedia_tag.png");
+    this.load.image("house_rules_logo", "assets/images/library/house_rules.png");
 
     this.load.image("knight_dialog", "assets/images/shared/knight_dialog.png");
     this.load.image("player_dialog", "assets/images/shared/player_dialog.png");
