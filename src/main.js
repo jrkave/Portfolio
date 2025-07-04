@@ -3,6 +3,7 @@ import { Entrance } from "./scenes/Entrance.js";
 import { Academics } from "./scenes/Academics.js";
 import { Armory } from "./scenes/Armory.js";
 import { Library } from "./scenes/Library.js";
+import { FinalScene } from "./scenes/FinalScene.js";
 
 const config = {
     type: Phaser.AUTO,
@@ -21,7 +22,7 @@ const config = {
     backgroundColor: "#000000",
     pixelArt: true,
     scene: [
-        Boot, Entrance, Academics, Armory, Library
+        Boot, Entrance, Academics, Armory, Library, FinalScene
     ],
     scale: {
         mode: Phaser.Scale.FIT,

@@ -51,6 +51,8 @@ export class Entrance extends Phaser.Scene {
         
         // Fade in
         this.cameras.main.fadeIn(1500, 0, 0, 0);
+
+        this.scene.start("FinalScene");
     }
 
     update() {
