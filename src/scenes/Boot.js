@@ -34,7 +34,7 @@ export class Boot extends Phaser.Scene {
     this.load.image("armory_bg", "assets/images/armory/armory_v3.png");
     this.load.image("big_shelf", "assets/images/armory/big_shelf_v1.png");
     this.load.image("chest", "assets/images/armory/chest_v1.png");
-    this.load.image("chest_popup", "assets/images/armory/chest_popup.png");
+    this.load.image("chest_popup", "assets/images/armory/chest_popup_v3.png");
     this.load.image("lectern", "assets/images/armory/lectern_v1.png");
     this.load.image("weapons_rack", "assets/images/armory/weapons_rack_v2.png");
     this.load.image("python_weapon_1", "assets/images/armory/python_weapon_v1.png");
