@@ -38,7 +38,6 @@ export class FinalScene extends Phaser.Scene {
         this.doorZone.on("pointerdown", () => this.menu.show());
         this.emitter.on("change_scene", () => this.scene.start("Library"));
         lectern.on("pointerdown", () => lecternPopup.show());
-        lecternPopup.show();
 
         this.knight.on("pointerdown", () => this.multiDialog.show());
 
