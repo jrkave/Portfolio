@@ -261,8 +261,8 @@ export const HouseRulesConfig = {
     x: 0,
     y: 0,
     closeKey: "x_button_transparent", 
-    closeX: 404,
-    closeY: 44,
+    closeX: 0,
+    closeY: 100,
     assets: [
         {
             key: "house_rules_logo",

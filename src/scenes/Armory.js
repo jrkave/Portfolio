@@ -1,7 +1,7 @@
 import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
 import { SingleMessageDialog, MultiMessageDialog } from "../ui/dialogs.js";
-import { LecternConfig } from "../popups/armory.js";
+import { LecternConfig, ChestConfig } from "../popups/armory.js";
 import { MultiOptionMenu } from "../ui/menu.js";
 import Popup from "../popups/Popup.js";
 import InteractiveObject from "../objects/interactiveObject.js";
@@ -68,6 +68,9 @@ export class Armory extends Phaser.Scene {
         // Set up popups
         const lecternPopup = new Popup(this, LecternConfig);
         lectern.on("pointerdown", () => lecternPopup.show());
+
+        const chestPopup = new Popup(this, ChestConfig);
+        chest.on("pointerdown", () => chestPopup.show());
 
         // Set up event listeners 
         this.knight.on("knight_clicked", () => {

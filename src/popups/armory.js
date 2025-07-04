@@ -222,7 +222,81 @@ export const LecternConfig = {
             y: 276,
             font: "dogicabold",
             fontSize: 8,
-            content: "Master"
+            content: "Expert"
         }
     ]
 };
+
+export const ChestConfig = {
+    backgroundKey: "chest_popup",
+    x: 160,
+    y: 44,
+    closeKey: "x_button", 
+    closeX: 306,
+    closeY: 13,
+    texts: [
+        {
+            x: 50,
+            y: 26,
+            font: "righteous",
+            fontSize: 8,
+            content: "The Chest of Platforms",
+            color: 16777215,
+            centerAlign: true,
+        },
+        {
+            x: 106,
+            y: 66,
+            font: "dogicabold",
+            fontSize: 8,
+            content: "Mythic GCP Gem-Studded Belt",
+            color: 16758063,
+        },
+        {
+            x: 106,
+            y: 80,
+            font: "dogica",
+            fontSize: 8,
+            content: "Enhanced with gems that ensure its bearer never runs out of memory.",
+            color: 16777215,
+            maxWidth: 190,
+            lineSpacing: 40
+        },
+        {
+            x: 106,
+            y: 122,
+            font: "dogicabold",
+            fontSize: 8,
+            content: "+10 Intelligence",
+            color: 6278628,
+        },
+        {
+            x: 106,
+            y: 160,
+            font: "dogicabold",
+            fontSize: 8,
+            content: "Exotic AWS Bow and Quiver",
+            color: 13589503,
+            maxWidth: 192,
+            lineSpacing: 40
+        },
+        {
+            x: 106,
+            y: 174,
+            font: "dogica",
+            fontSize: 8,
+            content: "With runes of deployment, its arrows always find their target, regardless of distance.",
+            color: 16777215,
+            maxWidth: 192,
+            lineSpacing: 40
+        },
+        {
+            x: 106,
+            y: 216,
+            font: "dogicabold",
+            fontSize: 8,
+            content: "+8 Attack",
+            color: 14711112
+        },
+    ]
+}
