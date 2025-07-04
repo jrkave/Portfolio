@@ -67,9 +67,9 @@ export class Boot extends Phaser.Scene {
     this.load.image("player_dialog", "assets/images/shared/player_dialog.png");
     this.load.image("x_button", "assets/images/shared/x_button.png");
     this.load.image("x_button_transparent", "assets/images/shared/x_button_transparent.png");
-    this.load.image("menu_button", "assets/images/shared/menu_button.png");
-    this.load.image("menu_one_option", "assets/images/shared/menu_popup_one_option.png");
-    this.load.image("menu_two_option", "assets/images/shared/menu_popup_two_option.png");
+    this.load.image("menu_button", "assets/images/shared/menu_btn.png");
+    this.load.image("menu_one_option", "assets/images/shared/menu_no_portrait_one_option_v1.png");
+    this.load.image("menu_two_option", "assets/images/shared/menu_no_portrait_v1.png");
     this.load.image("scroll_popup", "assets/images/shared/scroll_popup.png");
     this.load.image("plaque_popup", "assets/images/shared/plaque_popup_long.png");
     this.load.image("book_popup", "assets/images/shared/book_popup.png");

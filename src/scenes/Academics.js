@@ -36,7 +36,7 @@ export class Academics extends Phaser.Scene {
         this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
 
         this.emitter = new Phaser.Events.EventEmitter();
-        this.menu = new MultiOptionMenu(this, this.emitter, "Oh!");
+        this.menu = new MultiOptionMenu(this, this.emitter);
 
         // Set up popups 
         const umPopup = new Popup(this, UMConfig);
@@ -60,8 +60,6 @@ export class Academics extends Phaser.Scene {
         // Set up emitter
         this.emitter.on("go_to_prev", () => this.scene.start("Entrance"));
         this.emitter.on("go_to_next", () => this.scene.start("Armory"));
-        
-
 
         // Fade in
         this.cameras.main.fadeIn(1500, 0, 0, 0);

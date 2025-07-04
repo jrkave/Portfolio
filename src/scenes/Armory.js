@@ -63,7 +63,7 @@ export class Armory extends Phaser.Scene {
 
         this.multiDialog = new MultiMessageDialog(this, this.knight.getMessages());
         this.singleDialog = new SingleMessageDialog(this);
-        this.menu = new MultiOptionMenu(this, this.emitter, "Hi!");
+        this.menu = new MultiOptionMenu(this, this.emitter);
 
         // Set up popups
         const lecternPopup = new Popup(this, LecternConfig);

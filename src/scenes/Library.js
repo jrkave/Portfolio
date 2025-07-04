@@ -52,7 +52,7 @@ export class Library extends Phaser.Scene {
             }
         })
 
-        this.menu = new MultiOptionMenu(this, this.emitter, "Hi!");
+        this.menu = new MultiOptionMenu(this, this.emitter);
         this.doorZone.on("pointerdown", () => this.menu.show());
         this.emitter.on("go_to_prev", () => this.scene.start("Armory"));
         this.emitter.on("go_to_next", () => this.scene.start("Library"));

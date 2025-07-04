@@ -38,7 +38,7 @@ export class Entrance extends Phaser.Scene {
         this.add.image(4, 4, "knight_dialog").setOrigin(0, 0).setVisible(false);
 
         this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
-        this.menu = new SingleOptionMenu(this, this.emitter, "NEXT", "So, are you ready to see the rest of the castle? Don't worry about gettin' lost. I'll lead ye through!");
+        this.menu = new SingleOptionMenu(this, this.emitter, "NEXT");
 
         this.knight.on("knight_clicked", () => {
             if (!this.dialog.visible) {
