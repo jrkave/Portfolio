@@ -44,6 +44,12 @@ export class Boot extends Phaser.Scene {
     this.load.image("postman_helm", "assets/images/armory/postman_helmet.png");
     this.load.image("git_helm", "assets/images/armory/git_helmet.png");
     this.load.image("selenium_helm", "assets/images/armory/selenium_helmet.png");
+    this.load.image("react", "assets/images/armory/react_shield.png");
+    this.load.image("jest", "assets/images/armory/jest_shield.png");
+    this.load.image("django", "assets/images/armory/django_shield.png");
+    this.load.image("vue", "assets/images/armory/vue_shield.png");
+    this.load.image("langchain", "assets/images/armory/langchain_shield.png");
+    this.load.image("tailwind", "assets/images/armory/tailwind_shield.png");
 
     this.load.image("library_bg", "assets/images/library/library_v1.png");
     this.load.image("blue_book", "assets/images/library/blue_book_v1.png");
@@ -57,11 +63,13 @@ export class Boot extends Phaser.Scene {
     this.load.image("house_rules_logo", "assets/images/library/house_rules.png");
 
     this.load.image("knight_dialog", "assets/images/shared/knight_dialog.png");
+    this.load.image("next_button", "assets/images/shared/next_button.png");
     this.load.image("player_dialog", "assets/images/shared/player_dialog.png");
     this.load.image("x_button", "assets/images/shared/x_button.png");
     this.load.image("x_button_transparent", "assets/images/shared/x_button_transparent.png");
-    this.load.image("button", "assets/images/shared/button.png");
-    this.load.image("menu", "assets/images/shared/knight_menu.png");
+    this.load.image("menu_button", "assets/images/shared/menu_button.png");
+    this.load.image("menu_one_option", "assets/images/shared/menu_popup_one_option.png");
+    this.load.image("menu_two_option", "assets/images/shared/menu_popup_two_option.png");
     this.load.image("scroll_popup", "assets/images/shared/scroll_popup.png");
     this.load.image("plaque_popup", "assets/images/shared/plaque_popup_long.png");
     this.load.image("book_popup", "assets/images/shared/book_popup.png");

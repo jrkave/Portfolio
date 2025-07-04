@@ -1,7 +1,7 @@
 import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
 import { MultiMessageDialog } from "../ui/dialogs.js";
-import Menu from "../ui/menu.js";
+import { MultiOptionMenu } from "../ui/menu.js";
 import InteractiveObject from "../objects/interactiveObject.js";
 import Popup from "../popups/Popup.js";
 import { UMConfig, GVConfig, GRConfig } from "../popups/academics.js";
@@ -12,7 +12,6 @@ export class Academics extends Phaser.Scene {
     }
 
     create() {
-
         // Create game objects
         this.add.image(0, 0, "academics_bg").setOrigin(0, 0);
         this.add.sprite(155, 230, "candle").play("flicker");
@@ -35,7 +34,9 @@ export class Academics extends Phaser.Scene {
         this.add.image(0, 0, "sunlight_regular").setOrigin(0);
 
         this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
-        this.menu = new Menu(this);
+
+        this.emitter = new Phaser.Events.EventEmitter();
+        this.menu = new MultiOptionMenu(this, this.emitter, "Oh!");
 
         // Set up popups 
         const umPopup = new Popup(this, UMConfig);
@@ -56,9 +57,11 @@ export class Academics extends Phaser.Scene {
 
         this.doorZone.on("pointerdown", () => this.menu.show());
 
-        this.menu.on("yes_clicked", () => {
-            this.scene.start("Armory");
-        });
+        // Set up emitter
+        this.emitter.on("go_to_prev", () => this.scene.start("Entrance"));
+        this.emitter.on("go_to_next", () => this.scene.start("Armory"));
+        
+
 
         // Fade in
         this.cameras.main.fadeIn(1500, 0, 0, 0);

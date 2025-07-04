@@ -1,7 +1,7 @@
 import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
 import { MultiMessageDialog } from "../ui/dialogs.js";
-import Menu from "../ui/menu.js";
+import { SingleOptionMenu } from "../ui/menu.js";
 
 export class Entrance extends Phaser.Scene {
     
@@ -10,6 +10,7 @@ export class Entrance extends Phaser.Scene {
     }
 
     create() {
+        this.emitter = new Phaser.Events.EventEmitter();
         this.cursors = this.input.keyboard.createCursorKeys();
 
         // Create game objects
@@ -21,9 +22,11 @@ export class Entrance extends Phaser.Scene {
         this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
 
         this.knight = new Knight(this, 190, 224, [
-            "This castle has many mysteries inside, yes indeed...",
-            "Well? Are ye goin' to go inside?",
-            "If yer havin' trouble gettin' inside, click the door, and I'll let ye in."
+            "Ah... a traveler. It’s been some time since footsteps echoed in these halls.",
+            "The one who built this place, the Architect, no longer walks these halls... and yet, their presence lingers.",
+            "And myself? I am the Knight. Their steward. Their voice. I’ve been charged to guide those who wander in.",
+            "So, walk carefully, dwarf. This place remembers.",
+            "Click on the door, and your journey is sure to commence..."
         ]);
         this.knight.patrol(450, 190, 6000, 3000);
 
@@ -35,7 +38,7 @@ export class Entrance extends Phaser.Scene {
         this.add.image(4, 4, "knight_dialog").setOrigin(0, 0).setVisible(false);
 
         this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
-        this.menu = new Menu(this);
+        this.menu = new SingleOptionMenu(this, this.emitter, "NEXT", "So, are you ready to see the rest of the castle? Don't worry about gettin' lost. I'll lead ye through!");
 
         this.knight.on("knight_clicked", () => {
             if (!this.dialog.visible) {
@@ -44,9 +47,7 @@ export class Entrance extends Phaser.Scene {
         });
         
         this.doorZone.on("pointerdown", () => this.menu.show());
-        this.menu.on("yes_clicked", () => {
-            this.scene.start("Academics");
-        });
+        this.emitter.on("change_scene", () => this.scene.start("Academics"));
         
         // Fade in
         this.cameras.main.fadeIn(1500, 0, 0, 0);

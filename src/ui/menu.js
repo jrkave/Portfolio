@@ -1,47 +1,68 @@
-export default class Dialog {
-  constructor(scene) {
+class MenuBase extends Phaser.GameObjects.Container {
+  constructor(scene, emitter, knight_dialog) {
+    super(scene, 0, 0);
+
     this.scene = scene;
+    this.scene.add.existing(this);
+    this.emitter = emitter;
+    this.setVisible(false);
 
-    // Menu image setup
-    const menu = scene.add.image(224, 70, "menu").setOrigin(0);
-    const yes_button = scene.add
-      .image(280, 150, "button")
-      .setInteractive({ useHandCursor: true });
-    const no_button = scene.add
-      .image(360, 150, "button")
-      .setInteractive({ useHandCursor: true });
+    this.close_button = scene.add.image(461, 86, "x_button_transparent").setInteractive({useHandCursor: true});
+    this.close_button.on("pointerdown", () => this.hide());
 
-    // Text setup
-    const knight_text = scene.add.bitmapText(284, 82, "dogica", "Oi! Ready to see the rest of the castle, are ye?", 8)
-      .setMaxWidth(140)
+    this.text = scene.add.bitmapText(284, 102, "dogica", knight_dialog, 8)
+      .setMaxWidth(160)
       .setLineSpacing(30);
-      
-    const yes_text = scene.add.bitmapText(261, 144, "righteous", "AYE", 8)
-      .setCharacterTint(0, -1, true, 16777215);
-    const no_text = scene.add.bitmapText(342, 144, "righteous", "NAY", 8)
-      .setCharacterTint(0, -1, true, 16777215);
-
-    // Container setup
-    this.container = scene.add.container();
-    this.container.add([menu, knight_text, yes_button, yes_text, no_button, no_text]);
-    this.container.setVisible(false);
-
-    // Event handlers and emitter setup
-    this.emitter = new Phaser.Events.EventEmitter();
-    no_button.on("pointerdown", () => this.hide());
-    yes_button.on("pointerdown", () => this.emitter.emit("yes_clicked"));
-
+    
+    this.add([this.close_button, this.text]);
   }
 
   show() {
-    this.container.setVisible(true);
+    this.setVisible(true);
   }
 
   hide() {
-    this.container.setVisible(false);
+    this.setVisible(false);
   }
+}
 
-  on(event, callback) {
-    this.emitter.on(event, callback);
+export class SingleOptionMenu extends MenuBase {
+  constructor(scene, emitter, btn_text, knight_dialog="Hello there!") {
+    super(scene, emitter, knight_dialog);
+
+    // Create game objects
+    const menu = scene.add.image(320, 180, "menu_one_option");
+    const button = scene.add.image(320, 236, "menu_button").setInteractive({useHandCursor: true});
+    const button_text = scene.add.bitmapText(288, 230, "righteous", btn_text, 10).setCharacterTint(0, -1, true, 16777215);
+    this.add([menu, button, button_text]);
+
+    // Bring objects to front
+    this.bringToTop(this.close_button);
+    this.bringToTop(this.text);
+
+    // Emit event
+    button.on("pointerdown", () => this.emitter.emit("change_scene"));
+  }
+}
+
+export class MultiOptionMenu extends MenuBase {
+  constructor(scene, emitter, knight_dialog="Hello there!") {
+    super(scene, emitter, knight_dialog);
+
+    // Create game objects
+    const menu = scene.add.image(320, 180, "menu_two_option");
+    const prev_button = scene.add.image(250, 236, "menu_button").setInteractive({useHandCursor: true});
+    const next_button = scene.add.image(391, 236, "menu_button").setInteractive({useHandCursor: true});
+    const prev_text = scene.add.bitmapText(224, 230, "righteous", "PREV", 8).setCharacterTint(0, -1, true, 16777215);
+    const next_text = scene.add.bitmapText(366, 230, "righteous", "NEXT", 8).setCharacterTint(0, -1, true, 16777215);
+    this.add([menu, prev_button, next_button, prev_text, next_text]);
+
+    // Bring objects to front
+    this.bringToTop(this.close_button);
+    this.bringToTop(this.text);
+
+    // Emit events
+    prev_button.on("pointerdown", () => this.emitter.emit("go_to_prev"));
+    next_button.on("pointerdown", () => this.emitter.emit("go_to_next"))
   }
 }

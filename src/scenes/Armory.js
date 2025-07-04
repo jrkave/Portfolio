@@ -2,7 +2,7 @@ import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
 import { SingleMessageDialog, MultiMessageDialog } from "../ui/dialogs.js";
 import { LecternConfig } from "../popups/armory.js";
-import Menu from "../ui/menu.js";
+import { MultiOptionMenu } from "../ui/menu.js";
 import Popup from "../popups/Popup.js";
 import InteractiveObject from "../objects/interactiveObject.js";
 
@@ -12,6 +12,7 @@ export class Armory extends Phaser.Scene {
     }
 
     create() {
+        this.emitter = new Phaser.Events.EventEmitter();
 
         // Create game objects
         this.add.image(0, 0, "armory_bg").setOrigin(0);
@@ -20,28 +21,28 @@ export class Armory extends Phaser.Scene {
 
         const postmanHelm = new InteractiveObject(this, 242, 158, "postman_helm")
             .applyShine()
-            .setMessage("Ah, yes, the Postman helm!");
+            .setMessage("Ah, yes, the Postman helm. This helm is well-worn, for it has borne many summons across kingdoms...");
         const gitHelm = new InteractiveObject(this, 272, 158, "git_helm")
             .applyShine()
-            .setMessage("Ah, yes, the Git helm!");
+            .setMessage("The Git helm bears some marks, guiding the Architect through branching. It shall surely see more battles, indeed.");
         const seleniumHelm = new InteractiveObject(this, 302, 156, "selenium_helm")
             .applyShine()
-            .setMessage("Ah yes, the Selenium helm!");
+            .setMessage("This is the Selenium helmet, fresh from the forge. The Architect is just beginning to test its depth of defense...");
         this.add.image(272, 170, "big_shelf");
 
         const rack = new InteractiveObject(this, 320, 305, "weapons_rack")
             .applyShine()
-            .setMessage("Ah, you're interested in the weapons rack! Click any of the weapons and I'll tell ye more.");
+            .setMessage("Ah, you're interested in the weapons rack. Click any of the weapons and I'll tell you its tale.");
         const pyWeapon  = new InteractiveObject(this, 279, 290, "python_weapon_1")
-            .setMessage("Python!");
+            .setMessage("The Python Double-Blade Axe is sharp and balanced. It is the oldest and most-used weapon of the Architect.");
         const sqlWeapon = new InteractiveObject(this, 306, 306, "sql_weapon_2")
-            .setMessage("SQL!");
+            .setMessage("This SQL Long Hammer shows signs of many strikes. The Architect uses it adeptly to unearth secrets from deep data mines.");
         const javaWeapon = new InteractiveObject(this, 334, 304, "java_weapon_3")
-            .setMessage("Java!");
+            .setMessage("This ornate Java Sword was once a trusted blade. It rests quietly now, awaiting the Architect’s call.");
         const webWeapon = new InteractiveObject(this, 352, 311, "web_weapon_4")
-            .setMessage("The Web Sword!");
+            .setMessage("“The Architect keeps her Web Sword polished and swift. Indeed, she has shaped this very castle with it.");
         const cppWeapon  = new InteractiveObject(this, 368, 292, "cpp_weapon_5")
-            .setMessage("C++!");
+            .setMessage("The C++ Mace is heavy and timeworn. Though less familiar now, the Architect still knows its powerful swing.");
 
         const lectern = new InteractiveObject(this, 556, 315, "lectern").applyShine();
         const chest = new InteractiveObject(this, 186, 321, "chest").applyShine();
@@ -49,7 +50,11 @@ export class Armory extends Phaser.Scene {
         this.doorZone = this.add.rectangle(28, 140, 88, 190);
         this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
 
-        this.knight = new Knight(this, 40, 292, ["Welcome to th' Armory!", "Careful of the weapons!"]).setFlipX(true);
+        this.knight = new Knight(this, 40, 292, 
+            ["Behold the Architect's armory, a collection of items forged in the fires of countless projects...",
+            "Take a closer look and discover their secrets, for each has its own individual tale."]
+            )
+            .setFlipX(true);
         this.cursors = this.input.keyboard.createCursorKeys();
         this.player = new Player(this, 140, 298, this.cursors);
         const platform = this.physics.add.staticBody(0, 348, 640, 20);
@@ -58,7 +63,7 @@ export class Armory extends Phaser.Scene {
 
         this.multiDialog = new MultiMessageDialog(this, this.knight.getMessages());
         this.singleDialog = new SingleMessageDialog(this);
-        this.menu = new Menu(this);
+        this.menu = new MultiOptionMenu(this, this.emitter, "Hi!");
 
         // Set up popups
         const lecternPopup = new Popup(this, LecternConfig);
@@ -73,10 +78,8 @@ export class Armory extends Phaser.Scene {
         });
 
         this.doorZone.on("pointerdown", () => this.menu.show());
-
-        this.menu.on("yes_clicked", () => {
-            this.scene.start("Library");
-        });
+        this.emitter.on("go_to_prev", () => this.scene.start("Academics"));
+        this.emitter.on("go_to_next", () => this.scene.start("Library"));
 
         // Add event handler for objects that trigger the knight's dialog
         const dialogInteractables = [postmanHelm, gitHelm, seleniumHelm, rack, pyWeapon, sqlWeapon, javaWeapon, webWeapon, cppWeapon];

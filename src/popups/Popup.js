@@ -30,6 +30,7 @@ export default class Popup {
                 if (text.maxWidth) textObj.setMaxWidth(text.maxWidth);
                 if (text.lineSpacing) textObj.setLineSpacing(text.lineSpacing);
                 if (text.centerAlign) textObj.setCenterAlign();
+                if (text.color) textObj.setCharacterTint(0, -1, true, text.color);
 
                 this.container.add(textObj);
             });

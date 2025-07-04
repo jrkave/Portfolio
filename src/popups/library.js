@@ -34,14 +34,80 @@ export const PhysieConfig = {
             y: 140,
             font: "dogicabold",
             fontSize: 8,
-            content: "Tech Stack"
+            content: "Physie"
+        },
+        {
+            x: 200,
+            y: 140,
+            font: "dogica",
+            fontSize: 8,
+            content: "is a fitness"
         },
         {
             x: 150,
-            y: 156,
+            y: 153,
             font: "dogica",
             fontSize: 8,
-            content: "JavaScript, Node.js, AWS, React, Tailwind, DynamoDB",
+            content: "platform startup that allows users to record exercises and track exercise history.",
+            maxWidth: 158,
+            lineSpacing: 40
+        },
+        {
+            x: 150,
+            y: 212,
+            font: "dogicabold",
+            fontSize: 8,
+            content: "Tech Stack:"
+        },
+        {
+            x: 150,
+            y: 225,
+            font: "dogica",
+            fontSize: 8,
+            content: "AWS Lambda and EventBridge, DynamoDB, Node.js, React, Tailwind CSS",
+            maxWidth: 158,
+            lineSpacing: 40
+        },
+        {
+            x: 338,
+            y: 50,
+            font: "dogicabold",
+            fontSize: 8,
+            content: "Key Tasks:"
+        },
+        {
+            x: 338,
+            y: 72,
+            font: "dogica",
+            fontSize: 8,
+            content: "- Built React hooks as part of a frontend API layer to standardize",
+            maxWidth: 158,
+            lineSpacing: 40
+        },
+        {
+            x: 338,
+            y: 111,
+            font: "dogica",
+            fontSize: 8,
+            content: "communication with backend services",
+            maxWidth: 158,
+            lineSpacing: 40
+        },
+        {
+            x: 338,
+            y: 150,
+            font: "dogica",
+            fontSize: 8,
+            content: "- Wrote AWS Lambda functions and configured API endpoints using Node.js",
+            maxWidth: 158,
+            lineSpacing: 40
+        },
+        {
+            x: 338,
+            y: 214,
+            font: "dogica",
+            fontSize: 8,
+            content: "- Implemented unit tests for custom ADTs and internal helper modules using Jest",
             maxWidth: 158,
             lineSpacing: 40
         }

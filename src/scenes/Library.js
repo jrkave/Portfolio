@@ -1,7 +1,7 @@
 import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
 import { SingleMessageDialog, MultiMessageDialog } from "../ui/dialogs.js";
-import Menu from "../ui/menu.js";
+import { MultiOptionMenu } from "../ui/menu.js";
 import Popup from "../popups/Popup.js";
 import { PhysieConfig, RickipediaConfig, HouseRulesConfig } from "../popups/library.js";
 import InteractiveObject from "../objects/interactiveObject.js";
@@ -12,6 +12,7 @@ export class Library extends Phaser.Scene {
     }
 
     create() {
+        this.emitter = new Phaser.Events.EventEmitter();
 
         // Create game objects
         this.add.image(0, 0, "library_bg").setOrigin(0);
@@ -50,6 +51,11 @@ export class Library extends Phaser.Scene {
                 this.multiDialog.show();
             }
         })
+
+        this.menu = new MultiOptionMenu(this, this.emitter, "Hi!");
+        this.doorZone.on("pointerdown", () => this.menu.show());
+        this.emitter.on("go_to_prev", () => this.scene.start("Armory"));
+        this.emitter.on("go_to_next", () => this.scene.start("Library"));
 
         // Fade in
         this.cameras.main.fadeIn(1500, 0, 0, 0);
