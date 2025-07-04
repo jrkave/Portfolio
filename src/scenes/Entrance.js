@@ -22,11 +22,11 @@ export class Entrance extends Phaser.Scene {
         this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
 
         this.knight = new Knight(this, 190, 224, [
-            "Ah... a traveler. It’s been some time since footsteps echoed in these halls.",
-            "The one who built this place, the Architect, no longer walks these halls... and yet, their presence lingers.",
-            "And myself? I am the Knight. Their steward. Their voice. I’ve been charged to guide those who wander in.",
-            "So, walk carefully, dwarf. This place remembers.",
-            "Click on the door, and your journey is sure to commence..."
+        "Ah! A traveler! It 'as been some time since footsteps echoed in these halls!",
+        "The one who built this place, the Architect, no longer dwells 'ere, yet their presence still clings to the stone...",
+        "for every chamber an' artifact ye see be a reflection of their long road, their triumphs an' trials alike.",
+        "I am their Knight — steward, shield, an' voice. I remain to guide those who wander these forgotten halls.",
+        "So tread careful, dwarf, and click the door when ye're ready to begin yer journey."
         ]);
         this.knight.patrol(450, 190, 6000, 3000);
 

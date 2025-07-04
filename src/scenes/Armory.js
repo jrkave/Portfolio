@@ -21,28 +21,28 @@ export class Armory extends Phaser.Scene {
 
         const postmanHelm = new InteractiveObject(this, 242, 158, "postman_helm")
             .applyShine()
-            .setMessage("Ah, yes, the Postman helm. This helm is well-worn, for it has borne many summons across kingdoms...");
+            .setMessage("Ah, yes, the Postman helm! This helm is well-worn, for it 'as borne many summons across kingdoms...");
         const gitHelm = new InteractiveObject(this, 272, 158, "git_helm")
             .applyShine()
-            .setMessage("The Git helm bears some marks, guiding the Architect through branching. It shall surely see more battles, indeed.");
+            .setMessage("The Git helm bears some marks, aye, guiding the Architect through branching. It shall surely see more battles, indeed!");
         const seleniumHelm = new InteractiveObject(this, 302, 156, "selenium_helm")
             .applyShine()
-            .setMessage("This is the Selenium helmet, fresh from the forge. The Architect is just beginning to test its depth of defense...");
+            .setMessage("This is the Selenium helmet, fresh from the forge. The Architect is just beginnin' to test its depth of defense!");
         this.add.image(272, 170, "big_shelf");
 
         const rack = new InteractiveObject(this, 320, 305, "weapons_rack")
             .applyShine()
-            .setMessage("Ah, you're interested in the weapons rack. Click any of the weapons and I'll tell you its tale.");
+            .setMessage("Ah, yer interested in the weapons rack! Click any o' the weapons and I'll tell you its tale.");
         const pyWeapon  = new InteractiveObject(this, 279, 290, "python_weapon_1")
-            .setMessage("The Python Double-Blade Axe is sharp and balanced. It is the oldest and most-used weapon of the Architect.");
+            .setMessage("Ah, the Python Double-Blade Axe is sharp and balanced. It's the oldest weapon of the Architect.");
         const sqlWeapon = new InteractiveObject(this, 306, 306, "sql_weapon_2")
-            .setMessage("This SQL Long Hammer shows signs of many strikes. The Architect uses it adeptly to unearth secrets from deep data mines.");
+            .setMessage("Aye, the SQL Long Hammer shows signs of many strikes. The Architect always finds herself coming back to this one.");
         const javaWeapon = new InteractiveObject(this, 334, 304, "java_weapon_3")
-            .setMessage("This ornate Java Sword was once a trusted blade. It rests quietly now, awaiting the Architect’s call.");
+            .setMessage("This Java Sword is well-worn, though less used in years recent...");
         const webWeapon = new InteractiveObject(this, 352, 311, "web_weapon_4")
-            .setMessage("“The Architect keeps her Web Sword polished and swift. Indeed, she has shaped this very castle with it.");
+            .setMessage("“The Architect keeps her Web Sword polished and swift. Indeed, she's shaped this very castle with it!");
         const cppWeapon  = new InteractiveObject(this, 368, 292, "cpp_weapon_5")
-            .setMessage("The C++ Mace is heavy and timeworn. Though less familiar now, the Architect still knows its powerful swing.");
+            .setMessage("The C++ Mace is heavy and timeworn. Though less used, the Architect still knows its powerful swing.");
 
         const lectern = new InteractiveObject(this, 556, 315, "lectern").applyShine();
         const chest = new InteractiveObject(this, 186, 321, "chest").applyShine();
@@ -51,8 +51,8 @@ export class Armory extends Phaser.Scene {
         this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
 
         this.knight = new Knight(this, 40, 292, 
-            ["Behold the Architect's armory, a collection of items forged in the fires of countless projects...",
-            "Take a closer look and discover their secrets, for each has its own individual tale."]
+            ["Behold the Architect's arm'ry, a collection of items forged in the fires of a good many projects!",
+            "Take a closer look and discover their secrets, for each has its own tale!"]
             )
             .setFlipX(true);
         this.cursors = this.input.keyboard.createCursorKeys();

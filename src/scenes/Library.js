@@ -24,7 +24,7 @@ export class Library extends Phaser.Scene {
         this.doorZone = this.add.rectangle(278, 140, 88, 190);
         this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
 
-        this.knight = new Knight(this, 260, 292, ["Welcome to th' Library!", "Shhh!"]).setFlipX(true);
+        this.knight = new Knight(this, 260, 292, ["Welcome to th' Library, where the Architect keeps her most important manuscripts.", "Take a look about!"]).setFlipX(true);
         
         this.cursors = this.input.keyboard.createCursorKeys();
         this.player = new Player(this, 140, 308, this.cursors);

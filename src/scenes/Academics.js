@@ -26,7 +26,7 @@ export class Academics extends Phaser.Scene {
         this.doorZone = this.add.rectangle(28, 140, 88, 190);
         this.doorZone.setInteractive({useHandCursor: true}).setOrigin(0);
     
-        this.knight = new Knight(this, 40, 292, ["Welcome to th' Academics Room! Go ahead, look around!", "You can touch anythin' that's shinin' about. Otherwise, keep yer hands off!"]).setFlipX(true);
+        this.knight = new Knight(this, 40, 292, ["This here is the Academics room, where th' Architect keeps a record of 'er educational journey.", "My advice? Look for objects that shimmer. Those are the one's you'll be wantin' to see."]).setFlipX(true);
         this.cursors = this.input.keyboard.createCursorKeys();
         this.player = new Player(this, 160, 298, this.cursors);
         const platform = this.physics.add.staticBody(0, 348, 640, 20);
