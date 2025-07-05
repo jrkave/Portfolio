@@ -5,6 +5,7 @@ import { LecternConfig, ChestConfig } from "../popups/armory.js";
 import { MultiOptionMenu } from "../ui/menu.js";
 import Popup from "../popups/Popup.js";
 import InteractiveObject from "../objects/interactiveObject.js";
+import PopupManager from "../ui/popupmanager.js";
 
 export class Armory extends Phaser.Scene {
     constructor() {
@@ -55,32 +56,27 @@ export class Armory extends Phaser.Scene {
             "Take a closer look and discover their secrets, for each has its own tale!"]
             )
             .setFlipX(true);
+        
         this.cursors = this.input.keyboard.createCursorKeys();
         this.player = new Player(this, 140, 298, this.cursors);
         const platform = this.physics.add.staticBody(0, 348, 640, 20);
         this.physics.add.collider(this.player, platform);
+        
         this.add.image(0, 0, "sunlight_regular").setOrigin(0);
 
-        this.multiDialog = new MultiMessageDialog(this, this.knight.getMessages());
-        this.singleDialog = new SingleMessageDialog(this);
-        this.menu = new MultiOptionMenu(this, this.emitter);
-
         // Set up popups
-        const lecternPopup = new Popup(this, LecternConfig);
-        lectern.on("pointerdown", () => lecternPopup.show());
-
-        const chestPopup = new Popup(this, ChestConfig);
-        chest.on("pointerdown", () => chestPopup.show());
+        this.popupManager = new PopupManager(this);
+        this.multiDialog = this.popupManager.register(new MultiMessageDialog(this, this.knight.getMessages()));
+        this.singleDialog = this.popupManager.register(new SingleMessageDialog(this));
+        this.menu = this.popupManager.register(new MultiOptionMenu(this, this.emitter));
+        const lecternPopup = this.popupManager.register(new Popup(this, LecternConfig));
+        const chestPopup = this.popupManager.register(new Popup(this, ChestConfig));
 
         // Set up event listeners 
-        this.knight.on("knight_clicked", () => {
-            if (this.singleDialog.visible) {
-                this.singleDialog.hide();
-            }
-                this.multiDialog.show();
-        });
-
-        this.doorZone.on("pointerdown", () => this.menu.show());
+        lectern.on("pointerdown", () => this.popupManager.showOnly(lecternPopup));
+        chest.on("pointerdown", () => this.popupManager.showOnly(chestPopup));
+        this.knight.on("knight_clicked", () => this.popupManager.showOnly(this.multiDialog));
+        this.doorZone.on("pointerdown", () => this.popupManager.showOnly(this.menu));
         this.emitter.on("go_to_prev", () => this.scene.start("Academics"));
         this.emitter.on("go_to_next", () => this.scene.start("Library"));
 
@@ -88,17 +84,13 @@ export class Armory extends Phaser.Scene {
         const dialogInteractables = [postmanHelm, gitHelm, seleniumHelm, rack, pyWeapon, sqlWeapon, javaWeapon, webWeapon, cppWeapon];
         dialogInteractables.forEach((interactable) => {
             interactable.on("pointerdown", () => {
-                if (this.multiDialog.visible) {
-                    this.multiDialog.hide();
-                }
-
                 this.singleDialog.update(interactable.message);
-                this.singleDialog.show();
+                this.popupManager.showOnly(this.singleDialog);
             });
         })
 
         // Fade in
-        this.cameras.main.fadeIn(1500, 0, 0, 0);
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
     }
 
     update() {

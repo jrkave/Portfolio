@@ -63,7 +63,7 @@ export class Boot extends Phaser.Scene {
     this.load.image("rickipedia_tag", "assets/images/library/rickipedia_tag.png");
     this.load.image("house_rules_logo", "assets/images/library/house_rules.png");
 
-    this.load.image("final_bg", "assets/images/final/final_room.png");
+    this.load.image("final_bg", "assets/images/final/final_room_v1.png");
 
     this.load.image("knight_dialog", "assets/images/shared/knight_dialog.png");
     this.load.image("next_button", "assets/images/shared/next_button.png");

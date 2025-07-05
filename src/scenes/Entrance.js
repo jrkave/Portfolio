@@ -2,6 +2,7 @@ import Knight from "../objects/knight.js";
 import Player from "../objects/player.js";
 import { MultiMessageDialog } from "../ui/dialogs.js";
 import { SingleOptionMenu } from "../ui/menu.js";
+import PopupManager from "../ui/popupmanager.js";
 
 export class Entrance extends Phaser.Scene {
     
@@ -11,7 +12,6 @@ export class Entrance extends Phaser.Scene {
 
     create() {
         this.emitter = new Phaser.Events.EventEmitter();
-        this.cursors = this.input.keyboard.createCursorKeys();
 
         // Create game objects
         this.add.image(0, 0, "entrance_bg").setOrigin(0, 0);
@@ -30,27 +30,25 @@ export class Entrance extends Phaser.Scene {
         ]);
         this.knight.patrol(450, 190, 6000, 3000);
 
+        this.cursors = this.input.keyboard.createCursorKeys();
         this.player = new Player(this, 110, 272, this.cursors);
         const platform = this.physics.add.staticBody(0, 320, 640, 38);
         this.physics.add.collider(this.player, platform);
 
         this.add.image(0, 0, "sunlight_entrance").setOrigin(0, 0);
-        this.add.image(4, 4, "knight_dialog").setOrigin(0, 0).setVisible(false);
 
-        this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
-        this.menu = new SingleOptionMenu(this, this.emitter, "NEXT");
+        // Set up popups
+        this.popupManager = new PopupManager(this);
+        this.dialog = this.popupManager.register(new MultiMessageDialog(this, this.knight.getMessages()));
+        this.menu = this.popupManager.register(new SingleOptionMenu(this, this.emitter, "NEXT"));
 
-        this.knight.on("knight_clicked", () => {
-            if (!this.dialog.visible) {
-                this.dialog.show();
-            }
-        });
-        
-        this.doorZone.on("pointerdown", () => this.menu.show());
+        // Set up event listeners
+        this.knight.on("knight_clicked", () => this.popupManager.showOnly(this.dialog));
+        this.doorZone.on("pointerdown", () => this.popupManager.showOnly(this.menu));
         this.emitter.on("change_scene", () => this.scene.start("Academics"));
         
         // Fade in
-        this.cameras.main.fadeIn(1500, 0, 0, 0);
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
     }
 
     update() {

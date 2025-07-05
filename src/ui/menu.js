@@ -34,7 +34,7 @@ export class SingleOptionMenu extends MenuBase {
     // Create game objects
     const menu = scene.add.image(320, 180, "menu_one_option");
     const button = scene.add.image(320, 206, "menu_button").setInteractive({useHandCursor: true});
-    const button_text = scene.add.bitmapText(290, 198, "righteous", btn_text, 10).setCharacterTint(0, -1, true, 16777215);
+    const button_text = scene.add.bitmapText(295, 200, "righteous", btn_text, 8).setCharacterTint(0, -1, true, 16777215);
     this.add([menu, button, button_text]);
 
     // Bring objects to front
@@ -54,7 +54,7 @@ export class MultiOptionMenu extends MenuBase {
     const menu = scene.add.image(320, 180, "menu_two_option");
     const prev_button = scene.add.image(253, 206, "menu_button").setInteractive({useHandCursor: true});
     const next_button = scene.add.image(386, 206, "menu_button").setInteractive({useHandCursor: true});
-    const prev_text = scene.add.bitmapText(227, 199, "righteous", "PREV", 8).setCharacterTint(0, -1, true, 16777215);
+    const prev_text = scene.add.bitmapText(227, 199, "righteous", "BACK", 8).setCharacterTint(0, -1, true, 16777215);
     const next_text = scene.add.bitmapText(363, 199, "righteous", "NEXT", 8).setCharacterTint(0, -1, true, 16777215);
     this.add([menu, prev_button, next_button, prev_text, next_text]);
 

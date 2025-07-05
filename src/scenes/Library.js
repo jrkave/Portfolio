@@ -5,6 +5,7 @@ import { MultiOptionMenu } from "../ui/menu.js";
 import Popup from "../popups/Popup.js";
 import { PhysieConfig, RickipediaConfig, HouseRulesConfig } from "../popups/library.js";
 import InteractiveObject from "../objects/interactiveObject.js";
+import PopupManager from "../ui/popupmanager.js";
 
 export class Library extends Phaser.Scene {
     constructor() {
@@ -32,34 +33,26 @@ export class Library extends Phaser.Scene {
         this.physics.add.collider(this.player, platform);
         this.add.image(0, 0, "sunlight_regular").setOrigin(0);
 
-        this.multiDialog = new MultiMessageDialog(this, this.knight.getMessages());
-        this.singleDialog = new SingleMessageDialog(this);
-
         // Set up popups
-        const blueBookPopup = new Popup(this, PhysieConfig);
-        blueBook.on("pointerdown", () => blueBookPopup.show());
-
-        const greenBookPopup = new Popup(this, RickipediaConfig);
-        greenBook.on("pointerdown", () => greenBookPopup.show());
-
-        const scrollPopup = new Popup(this, HouseRulesConfig);
-        scroll.on("pointerdown", () => scrollPopup.show());
+        this.popupManager = new PopupManager(this);
+        this.multiDialog = this.popupManager.register(new MultiMessageDialog(this, this.knight.getMessages()));
+        this.singleDialog = this.popupManager.register(new SingleMessageDialog(this));
+        const blueBookPopup = this.popupManager.register(new Popup(this, PhysieConfig));
+        const greenBookPopup = this.popupManager.register(new Popup(this, RickipediaConfig));
+        const scrollPopup = this.popupManager.register(new Popup(this, HouseRulesConfig));
+        this.menu = this.popupManager.register(new MultiOptionMenu(this, this.emitter));
 
         // Set up event listeners
-        this.knight.on("knight_clicked", () => {
-            if (!this.multiDialog.visible) {
-                this.multiDialog.show();
-            }
-        })
-
-        this.menu = new MultiOptionMenu(this, this.emitter);
-        this.doorZone.on("pointerdown", () => this.menu.show());
+        this.knight.on("knight_clicked", () => this.popupManager.showOnly(this.multiDialog));
+        blueBook.on("pointerdown", () => this.popupManager.showOnly(blueBookPopup));
+        scroll.on("pointerdown", () => this.popupManager.showOnly(scrollPopup));
+        greenBook.on("pointerdown", () => this.popupManager.showOnly(greenBookPopup));
+        this.doorZone.on("pointerdown", () => this.popupManager.showOnly(this.menu));
         this.emitter.on("go_to_prev", () => this.scene.start("Armory"));
         this.emitter.on("go_to_next", () => this.scene.start("FinalScene"));
 
         // Fade in
-        this.cameras.main.fadeIn(1500, 0, 0, 0);
-
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
     }
 
     update() {

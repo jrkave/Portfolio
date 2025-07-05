@@ -5,6 +5,7 @@ import { MultiOptionMenu } from "../ui/menu.js";
 import InteractiveObject from "../objects/interactiveObject.js";
 import Popup from "../popups/Popup.js";
 import { UMConfig, GVConfig, GRConfig } from "../popups/academics.js";
+import PopupManager from "../ui/popupmanager.js";
 
 export class Academics extends Phaser.Scene {
     constructor() {
@@ -12,6 +13,8 @@ export class Academics extends Phaser.Scene {
     }
 
     create() {
+        this.emitter = new Phaser.Events.EventEmitter();
+
         // Create game objects
         this.add.image(0, 0, "academics_bg").setOrigin(0, 0);
         this.add.sprite(155, 230, "candle").play("flicker");
@@ -33,36 +36,25 @@ export class Academics extends Phaser.Scene {
         this.physics.add.collider(this.player, platform);
         this.add.image(0, 0, "sunlight_regular").setOrigin(0);
 
-        this.dialog = new MultiMessageDialog(this, this.knight.getMessages());
-
-        this.emitter = new Phaser.Events.EventEmitter();
-        this.menu = new MultiOptionMenu(this, this.emitter);
-
         // Set up popups 
-        const umPopup = new Popup(this, UMConfig);
-        umPlaque.on("pointerdown", () => umPopup.show());
-
-        const gvPopup = new Popup(this, GVConfig);
-        gvPlaque.on("pointerdown", () => gvPopup.show());
-
-        const grccPopup = new Popup(this, GRConfig);
-        grScroll.on("pointerdown", () => grccPopup.show());
+        this.popupManager = new PopupManager(this);
+        this.dialog = this.popupManager.register(new MultiMessageDialog(this, this.knight.getMessages()));
+        this.menu = this.popupManager.register(new MultiOptionMenu(this, this.emitter));
+        const umPopup = this.popupManager.register(new Popup(this, UMConfig));
+        const gvPopup = this.popupManager.register(new Popup(this, GVConfig));
+        const grccPopup = this.popupManager.register(new Popup(this, GRConfig));
 
         // Set up event listeners 
-        this.knight.on("knight_clicked", () => {
-            if (!this.dialog.visible) {
-                this.dialog.show();
-            }
-        })
-
-        this.doorZone.on("pointerdown", () => this.menu.show());
-
-        // Set up emitter
+        this.knight.on("knight_clicked", () => this.popupManager.showOnly(this.dialog));
+        umPlaque.on("pointerdown", () => this.popupManager.showOnly(umPopup));
+        gvPlaque.on("pointerdown", () => this.popupManager.showOnly(gvPopup));
+        grScroll.on("pointerdown", () => this.popupManager.showOnly(grccPopup));
+        this.doorZone.on("pointerdown", () => this.popupManager.showOnly(this.menu));
         this.emitter.on("go_to_prev", () => this.scene.start("Entrance"));
         this.emitter.on("go_to_next", () => this.scene.start("Armory"));
 
         // Fade in
-        this.cameras.main.fadeIn(1500, 0, 0, 0);
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
     }
 
     update() {
