@@ -25,7 +25,7 @@ export class Boot extends Phaser.Scene {
     this.load.image("academics_bg", "assets/images/academics/academics_v1.png");
     this.load.image("grcc_scroll", "assets/images/academics/grcc_scroll.png");
     this.load.image("gv_plaque", "assets/images/academics/gv_plaque.png");
-    this.load.image("um_plaque", "assets/images/academics/um_plaque.png");
+    this.load.image("um_plaque", "assets/images/academics/um_plaque_v2.png");
     this.load.image("shelf", "assets/images/academics/shelf_v1.png");
     this.load.image("gvsu_logo", "assets/images/academics/gvsu.png");
     this.load.image("umich_logo", "assets/images/academics/umich.png");
