@@ -101,7 +101,7 @@ export class Boot extends Phaser.Scene {
     );
     this.load.bitmapFont(
       "dogicabold",
-      "/assets/fonts/dogicabold.png",
+      "assets/fonts/dogicabold.png",
       "assets/fonts/dogicabold.xml"
     );
     this.load.bitmapFont(
