@@ -37,13 +37,13 @@ export class Armory extends Phaser.Scene {
         const pyWeapon  = new InteractiveObject(this, 279, 290, "python_weapon_1")
             .setMessage("Ah, the Python Double-Blade Axe is sharp and balanced. It's the oldest weapon of the Architect.");
         const sqlWeapon = new InteractiveObject(this, 306, 306, "sql_weapon_2")
-            .setMessage("Aye, the SQL Long Hammer shows signs of many strikes. The Architect always finds herself coming back to this one.");
+            .setMessage("Aye, the SQL Long Hammer shows signs of many strikes. The Architect always finds herself coming back to it.");
         const javaWeapon = new InteractiveObject(this, 334, 304, "java_weapon_3")
-            .setMessage("This Java Sword is well-worn, though less used in years recent...");
+            .setMessage("This Java Sword is well-worn and bears many marks from battle...");
         const webWeapon = new InteractiveObject(this, 352, 311, "web_weapon_4")
             .setMessage("“The Architect keeps her Web Sword polished and swift. Indeed, she's shaped this very castle with it!");
         const cppWeapon  = new InteractiveObject(this, 368, 292, "cpp_weapon_5")
-            .setMessage("The C++ Mace is heavy and timeworn. Though less used, the Architect still knows its powerful swing.");
+            .setMessage("The C++ Mace is heavy and timeworn. Indeed, the Architect still knows its powerful swing.");
 
         const lectern = new InteractiveObject(this, 556, 315, "lectern").applyShine();
         const chest = new InteractiveObject(this, 186, 321, "chest").applyShine();

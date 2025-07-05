@@ -257,7 +257,7 @@ export const ChestConfig = {
             y: 80,
             font: "dogica",
             fontSize: 8,
-            content: "Enhanced with gems that ensure its bearer never runs out of memory.",
+            content: "Enhanced with gems that ensure its bearer never runs out of storage.",
             color: 16777215,
             maxWidth: 190,
             lineSpacing: 40
